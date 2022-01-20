@@ -12,10 +12,10 @@ router.post('/receita', async (req, res) => {
   const mesmaData = await Receita.findOne({ data });
 
   const mesmoMes = data.toString().split('/')[0];
-  console.log(data.toString().split("/")[0]);
+  console.log(data.toString().split('/')[0]);
   try {
     if(mesmaDescricao && mesmoMes) //! No frontend, criar uma lista ordenada com descrições vinculadas ao id para testar duplicidade.
-      return res.status(400).send({ erro: 'Receita cadastrada com mesma descrição' });
+      return res.status(400).send({ erro: 'Receita já cadastrada para mês corrente.' });
 
     const receita = await Receita.create(req.body);
     return res.json({ receita });
