@@ -9,10 +9,8 @@ router.post('/receita', async (req, res) => {
   const mesmaDescricao = await Receita.findOne({ descricao });
 
   const { data } = req.body;
-  const mesmaData = await Receita.findOne({ data });
-
   const mesmoMes = data.toString().split('/')[0];
-  console.log(data.toString().split('/')[0]);
+  
   try {
     if(mesmaDescricao && mesmoMes)
       return res.status(400).send({ erro: 'Receita já cadastrada para mês corrente.' });
