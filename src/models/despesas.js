@@ -1,6 +1,6 @@
 const mongoose = require('../database');
 
-const despesaSchema = new mongoose.Schema({
+const DespesaSchema = new mongoose.Schema({
   id: {
     type: Number,
     require: true,
@@ -20,6 +20,6 @@ const despesaSchema = new mongoose.Schema({
   }
 });
 
-const Despesa = mongoose.model('Despesa', despesaSchema);
+const Despesa = mongoose.model('Despesa', DespesaSchema);
 
 module.exports = Despesa;

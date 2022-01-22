@@ -1,6 +1,6 @@
 const mongoose = require('../database');
 
-const receitaSchema = new mongoose.Schema({
+const ReceitaSchema = new mongoose.Schema({
   id: {
     type: Number,
     require: true,
@@ -20,6 +20,6 @@ const receitaSchema = new mongoose.Schema({
   }
 });
 
-const Receita = mongoose.model('Receita', receitaSchema);
+const Receita = mongoose.model('Receita', ReceitaSchema);
 
 module.exports = Receita;
