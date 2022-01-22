@@ -5,8 +5,8 @@ const Despesa = require('../models/despesas');
 const router = express.Router();
 
 router.post('/despesa', async (req, res) => {
-  const { descricao } = req.body;
-  const condicao = await Despesa.findOne({ descricao });
+  const { descricao, data } = req.body;
+  const condicao = await Despesa.findOne({ descricao, data });
   const descCondicao = condicao.descricao; console.log(descCondicao);
   const dataCondicao = String(condicao.data).split(' ')[1]; console.log(dataCondicao);
   
