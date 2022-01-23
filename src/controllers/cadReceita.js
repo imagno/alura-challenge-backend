@@ -5,19 +5,14 @@ const Receita = require('../models/receitas');
 const router = express.Router();
 
 router.post('/receita', async (req, res) => {
-  const { descricao } = req.body;
-  const mesmaDescricao = await Receita.findOne({ descricao });
-
-  const { data } = req.body;
-  const mesmaData = await Receita.findOne({ data });
-
-  const mesmoMes = data.toString().split('/')[0];
+  const { descricao, data } = req.body;
+  const condicao = await Receita.findOne({ descricao, data });
   
   try {
-    if (mesmaDescricao && mesmaData)
-      return res.status(400).send({ erro: 'Receita já cadastrada para mês corrente.' });
+    if (condicao)
+      return res.status(400).send({ erro: 'Receita já cadastrada neste dia.' });
     
-      const despesa = await Receita.create(req.body);
+    const despesa = await Receita.create(req.body);
     return res.json({ despesa });
     
   } catch (erro) {

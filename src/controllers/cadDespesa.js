@@ -12,7 +12,7 @@ router.post('/despesa', async (req, res) => {
   
   try {
     if (condicao)
-      return res.status(400).send({ erro: 'Despesa já cadastrada para mês corrente.' });
+      return res.status(400).send({ erro: 'Despesa já cadastrada neste dia.' });
     
     const despesa = await Despesa.create(req.body);
     return res.json({ despesa });
