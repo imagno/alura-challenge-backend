@@ -20,5 +20,16 @@ router.post('/receita', async (req, res) => {
   }
 });
 
+router.get('/receita', async (req, res) => {
+  const consultaReceita = await Receita.find(req.body);
+  // const { descricao, valor, data } = consultaReceita;
+
+  try {
+    return res.json(consultaReceita);
+  }catch (erro) {
+    return res.status(400).send({ erro: 'Falha na consulta' });
+  }
+});
+
 module.exports = app => app.use('/cadreceita', router);
  

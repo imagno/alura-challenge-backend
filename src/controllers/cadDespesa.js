@@ -15,10 +15,21 @@ router.post('/despesa', async (req, res) => {
       return res.status(400).send({ erro: 'Despesa já cadastrada neste dia.' });
     
     const despesa = await Despesa.create(req.body);
-    return res.json({ despesa });
+    return res.send({ despesa });
     
   } catch (erro) {
     return res.status(400).send({ erro: 'Falha no registro' });
+  }
+});
+
+router.get('/despesa', async (req, res) => {
+  const consultaDespesa = await Despesa.find(req.body);
+  // const { descricao, valor, data } = consultaDespesa;
+
+  try {
+    return res.json(consultaDespesa);
+  }catch (erro) {
+    return res.status(400).send({ erro: 'Falha na consulta' });
   }
 });
 
