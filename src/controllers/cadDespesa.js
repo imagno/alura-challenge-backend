@@ -15,7 +15,7 @@ router.post('/despesa', async (req, res) => {
       return res.status(400).send({ erro: 'Despesa já cadastrada neste dia.' });
     
     const despesa = await Despesa.create(req.body);
-    return res.send({ despesa });
+    return res.json({ despesa });
     
   } catch (erro) {
     return res.status(400).send({ erro: 'Falha no registro' });
@@ -30,6 +30,15 @@ router.get('/despesa', async (req, res) => {
     return res.json(consultaDespesa);
   }catch (erro) {
     return res.status(400).send({ erro: 'Falha na consulta' });
+  }
+});
+
+router.put('/despesa/:id', async(req, res) => {
+  const { id } = await Despesa.findOneAndUpdate(req.body);
+  try {
+    return res.json({ id });
+  } catch {
+    return res.status(400).send({ erro: 'Falha na atualização' });
   }
 });
 

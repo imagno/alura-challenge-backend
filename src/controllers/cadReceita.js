@@ -31,5 +31,14 @@ router.get('/receita', async (req, res) => {
   }
 });
 
+router.put('/receita/:id', async(req, res) => {
+  const { id } = await Receita.findOneAndUpdate(req.body);
+  try {
+    return res.json({ id });
+  } catch {
+    return res.status(400).send({ erro: 'Falha na atualização' });
+  }
+});
+
 module.exports = app => app.use('/cadreceita', router);
  
