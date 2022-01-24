@@ -12,8 +12,8 @@ router.post('/receita', async (req, res) => {
     if (condicao)
       return res.status(400).send({ erro: 'Receita já cadastrada neste dia.' });
     
-    const despesa = await Receita.create(req.body);
-    return res.json({ despesa });
+    const receita = await Receita.create(req.body);
+    return res.json({ receita });
     
   } catch (erro) {
     return res.status(400).send({ erro: 'Falha no registro' });
